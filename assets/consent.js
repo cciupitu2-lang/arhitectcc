@@ -40,13 +40,28 @@
       return v;
     }catch(e){ return null; }
   }
+  const GA_ID = 'G-D7TY2CG2GQ';
+  let gaLoaded = false;
+  function loadGA(){
+    if(gaLoaded) return;
+    gaLoaded = true;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID, { anonymize_ip: true });
+  }
   function updateGoogle(analytics){
+    window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
     window.gtag('consent','update',{
       analytics_storage: analytics ? 'granted':'denied',
       ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied',
       functionality_storage:'granted', security_storage:'granted'
     });
+    // gtag.js (si deci cookie-urile _ga/_ga_*) se incarca DOAR dupa consimtamant explicit.
+    if(analytics) loadGA();
   }
   function save(analytics){
     localStorage.setItem(KEY,JSON.stringify({analytics:!!analytics,savedAt:Date.now()}));
