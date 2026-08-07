@@ -16,15 +16,8 @@
   });
 </script>
 <link rel="stylesheet" href="assets/consent.css"/>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D7TY2CG2GQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-D7TY2CG2GQ', { 'anonymize_ip': true });
-</script>
+<!-- gtag.js NU se mai incarca necondiționat aici: se injectează din assets/consent.js
+     doar dupa ce vizitatorul a acceptat cookie-urile de analiza (vezi loadGA()). -->
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Cristian Ciupitu | Arhitect și verificator tehnic B1, D1 | București</title>
